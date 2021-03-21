@@ -1,0 +1,29 @@
+.calculator {
+    border: black 1px solid;
+    margin: 50px auto;
+    width: 250px;
+    height: 350px;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.calculator .section-button{
+    padding: 35px 20px 0 20px;
+}
+
+.calculator .input-result #input-result-tabl {
+    height: 30px;
+    width: 247px;
+    padding: 0px;
+    text-align: right;
+    border: black 2px solid;
+    font-weight: 600;
+}
+
+.calculator .section-button .line button {
+    height: 40px;
+    width: 40px;
+    margin: 10px 3px 0 3px;
+    border: none;
+    font-weight: 500;
+}
