@@ -1,29 +1,55 @@
-.calculator {
+main .calculator {
     border: black 1px solid;
     margin: 50px auto;
     width: 250px;
-    height: 350px;
+    height: 360px;
     text-align: center;
     font-size: 1.5em;
+    background: black;
+    border-radius: 20px;
 }
 
-.calculator .section-button{
-    padding: 35px 20px 0 20px;
+main .calculator .section-button{
+    padding: 0px 20px 0 20px;
 }
 
-.calculator .input-result #input-result-tabl {
-    height: 30px;
-    width: 247px;
+main .calculator .input-result #input-result-tabl {
+    height: 80px;
+    width: 210px;
     padding: 0px;
     text-align: right;
-    border: black 2px solid;
-    font-weight: 600;
+    border: none;
+    font-weight: 100;
+    font-size: 2.5em;
+    color: white;
+    background-color: black;
 }
 
-.calculator .section-button .line button {
-    height: 40px;
-    width: 40px;
+main .calculator .section-button .line button {
+    height: 42px;
+    width: 42px;
     margin: 10px 3px 0 3px;
     border: none;
     font-weight: 500;
+    border-radius: 50%;
+}
+
+main .calculator .section-button .line #zero {
+    width: 93px;
+    border-radius: 30px;
+}
+
+main .calculator .section-button .line .number-button {
+    background-color: #4b4a4a;
+    color: white;
+}
+
+main .calculator .section-button .line .operation-button {
+    background-color: rgb(209, 125, 15);
+    color: white;
+}
+
+main .calculator .section-button .line .line-one {
+    background-color: #b8b6b6;
+    color: black;
 }
