@@ -1,10 +1,12 @@
 // BUSINESS CODE
+
 let inputResult = document.querySelector('#input-result-tabl');
 inputResult.value = '0';
 let firstNumber;
 let lastNumber;
 let mathematicalOperation;
 let finalResult = '0';
+
 
 let numberButtons = document.querySelectorAll('.number-button');
 for (let i = 0; i < numberButtons.length; i++) {
@@ -20,28 +22,47 @@ for (let i = 0; i < operationButtons.length; i++) {
 
 
 
+// this block of work with getting numbers and their negative values 
+
 function numberButtonClickListener(e) {
     let theInteger = inputResult.value;
     let theNumber = e.currentTarget.value;
-    if (mathematicalOperation === undefined) {
-        if (theInteger != '0' ) {
-            inputResult.value = theInteger + theNumber;
-        } else {
+    if (mathematicalOperation === undefined && theNumber !== '±') {
+        if (theInteger == '0' || theInteger == '-0' || theInteger == finalResult) {
             inputResult.value = theNumber;
+        } else if (theNumber == '±') {
+            addNegativePositiveValues(inputResult.value);
+        } else {
+            inputResult.value = theInteger + theNumber;
         }
         firstNumber = inputResult.value;
+    } else if (theNumber === '±') {
+        addNegativePositiveValues(inputResult.value);
     } else {
-        if (theInteger != '0') {
-            inputResult.value = theInteger + theNumber;
-        } else {
+        if (theInteger == '0' || theInteger == '-0' || theInteger == finalResult) {
             inputResult.value = theNumber;
+        } else if (theNumber == '±') {
+            addNegativePositiveValues(inputResult.value);
+        } else {
+            inputResult.value = theInteger + theNumber;
         }
         lastNumber = inputResult.value;
     }
+
+}
+
+function addNegativePositiveValues(number) {
+    if (number.indexOf('-')) {
+        inputResult.value = '-' + +number;
+    } else {
+        inputResult.value = number.slice(1);
+    }
+    return inputResult.value;
 }
 
 
 
+// this block for working with mathematical operators, resetting and getting the result 
 
 function operationButtonClickListener(e) {
     theOperation = e.currentTarget.value;
@@ -74,16 +95,19 @@ function finalResultCalculator() {
         resetValues();
     } else if (mathematicalOperation == '=') {
         inputResult.value = finalResult;
+    } else if (mathematicalOperation == '%') {
+        finalResult = (+firstNumber / 100) * +lastNumber;
     } else {
         console.log('calculator error');
     }
     inputResult.value = finalResult;
+    firstNumber = finalResult;
 }
 
 function resetValues() {
     inputResult.value = '0';
     firstNumber = undefined;
-    lastNumber = undefined; 
+    lastNumber = undefined;
     mathematicalOperation = undefined;
     finalResult = '0';
 }
@@ -92,3 +116,4 @@ function resetValues() {
 
 
 // UI CODE
+// since the code is very simple there is no reason to write UI code in Javascript 
