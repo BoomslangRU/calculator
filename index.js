@@ -27,8 +27,8 @@ for (let i = 0; i < operationButtons.length; i++) {
 function numberButtonClickListener(e) {
     let theInteger = inputResult.value;
     let theNumber = e.currentTarget.value;
-    if (mathematicalOperation === undefined && theNumber !== '±') {
-        if (theInteger == '0' || theInteger == '-0' || theInteger == finalResult) {
+    if (mathematicalOperation === undefined || theNumber === '±') {
+        if (theInteger == '0' || theInteger == finalResult) {
             inputResult.value = theNumber;
         } else if (theNumber == '±') {
             addNegativePositiveValues(inputResult.value);
@@ -36,10 +36,10 @@ function numberButtonClickListener(e) {
             inputResult.value = theInteger + theNumber;
         }
         firstNumber = inputResult.value;
-    } else if (theNumber === '±') {
-        addNegativePositiveValues(inputResult.value);
+    // } else if (theNumber === '±') {
+    //     addNegativePositiveValues(inputResult.value);
     } else {
-        if (theInteger == '0' || theInteger == '-0' || theInteger == finalResult) {
+        if (theInteger == '0' || theInteger == finalResult) {
             inputResult.value = theNumber;
         } else if (theNumber == '±') {
             addNegativePositiveValues(inputResult.value);
