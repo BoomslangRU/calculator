@@ -77,7 +77,7 @@ function operationButtonClickListener(e) {
         resultOperation(theOperation);
     } else {
         finalResultCalculator();
-        resultOperation(theOperation);
+        // resultOperation(theOperation);
     }
 }
 
