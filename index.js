@@ -27,38 +27,44 @@ for (let i = 0; i < operationButtons.length; i++) {
 function numberButtonClickListener(e) {
     let theInteger = inputResult.value;
     let theNumber = e.currentTarget.value;
-    if (mathematicalOperation === undefined || theNumber === '±') {
-        if (theInteger == '0' || theInteger == finalResult) {
-            inputResult.value = theNumber;
-        } else if (theNumber == '±') {
-            addNegativePositiveValues(inputResult.value);
+    if (mathematicalOperation === undefined || mathematicalOperation == theNumber) {
+        if (theNumber === '±') {
+            firstNumber = addNegativePositiveValues(theInteger)
         } else {
-            inputResult.value = theInteger + theNumber;
+            firstNumber = addNumberInput(theInteger, theNumber);
         }
-        firstNumber = inputResult.value;
-    // } else if (theNumber === '±') {
-    //     addNegativePositiveValues(inputResult.value);
     } else {
-        if (theInteger == '0' || theInteger == finalResult) {
-            inputResult.value = theNumber;
-        } else if (theNumber == '±') {
-            addNegativePositiveValues(inputResult.value);
+        if (theNumber === '±') {
+            lastNumber = addNegativePositiveValues(theInteger)
         } else {
-            inputResult.value = theInteger + theNumber;
+            lastNumber = addNumberInput(theInteger, theNumber);
         }
-        lastNumber = inputResult.value;
     }
-
 }
 
-function addNegativePositiveValues(number) {
-    if (number.indexOf('-')) {
-        inputResult.value = '-' + +number;
+function addNumberInput(value, number) {
+    let inputResultValue = inputResult.value;
+    if (value === '0' || value == finalResult) {
+        inputResult.value = number;
+    } else if (value === '-0') {
+        inputResultValue = (value + number);
+        inputResult.value = '-' + inputResultValue.slice(2);
     } else {
-        inputResult.value = number.slice(1);
+        inputResult.value = value + number;
     }
     return inputResult.value;
 }
+
+function addNegativePositiveValues(value) {
+    if (value.indexOf('-')) {
+        inputResult.value = '-' + +value;
+    } else {
+        inputResult.value = value.slice(1);
+    }
+    return inputResult.value;
+}
+
+
 
 
 
