@@ -53,3 +53,8 @@ main .calculator .section-button .line .line-one {
     background-color: #b8b6b6;
     color: black;
 }
+
+.red {
+    background-color: red;
+    color: black;
+}

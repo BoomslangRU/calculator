@@ -1,23 +1,23 @@
 // BUSINESS CODE
 
-let inputResult = document.querySelector('#input-result-tabl');
-inputResult.value = '0';
-let firstNumber;
-let lastNumber;
-let mathematicalOperation;
-let finalResult = '0';
+let inputResult = document.querySelector('#input-result-tabl')
+inputResult.value = '0'
+let firstNumber = '0'
+let lastNumber = '0'
+let mathematicalOperation
+let finalResult = '0'
 
 
-let numberButtons = document.querySelectorAll('.number-button');
+let numberButtons = document.querySelectorAll('.number-button')
 for (let i = 0; i < numberButtons.length; i++) {
-    const numberButtonsArray = numberButtons[i];
-    numberButtonsArray.addEventListener('click', numberButtonClickListener);
+    const numberButtonsArray = numberButtons[i]
+    numberButtonsArray.addEventListener('click', numberButtonClickListener)
 }
 
-let operationButtons = document.querySelectorAll('.operation-button');
+let operationButtons = document.querySelectorAll('.operation-button')
 for (let i = 0; i < operationButtons.length; i++) {
-    const operationButtonsArray = operationButtons[i];
-    operationButtonsArray.addEventListener('click', operationButtonClickListener);
+    const operationButtonsArray = operationButtons[i]
+    operationButtonsArray.addEventListener('click', operationButtonClickListener)
 }
 
 
@@ -25,43 +25,43 @@ for (let i = 0; i < operationButtons.length; i++) {
 // this block of work with getting numbers and their negative values 
 
 function numberButtonClickListener(e) {
-    let theInteger = inputResult.value;
-    let theNumber = e.currentTarget.value;
+    let theInteger = inputResult.value
+    let theNumber = e.currentTarget.value
     if (mathematicalOperation === undefined || mathematicalOperation == theNumber) {
         if (theNumber === '±') {
             firstNumber = addNegativePositiveValues(theInteger)
         } else {
-            firstNumber = addNumberInput(theInteger, theNumber);
+            firstNumber = addNumberInput(theInteger, theNumber)
         }
     } else {
         if (theNumber === '±') {
             lastNumber = addNegativePositiveValues(theInteger)
         } else {
-            lastNumber = addNumberInput(theInteger, theNumber);
+            lastNumber = addNumberInput(theInteger, theNumber)
         }
     }
 }
 
 function addNumberInput(value, number) {
-    let inputResultValue = inputResult.value;
+    let inputResultValue = inputResult.value
     if (value === '0' || value == finalResult) {
-        inputResult.value = number;
+        inputResult.value = number
     } else if (value === '-0') {
-        inputResultValue = (value + number);
-        inputResult.value = '-' + inputResultValue.slice(2);
+        inputResultValue = (value + number)
+        inputResult.value = '-' + inputResultValue.slice(2)
     } else {
-        inputResult.value = value + number;
+        inputResult.value = value + number
     }
-    return inputResult.value;
+    return inputResult.value
 }
 
 function addNegativePositiveValues(value) {
     if (value.indexOf('-')) {
-        inputResult.value = '-' + +value;
+        inputResult.value = '-' + +value
     } else {
-        inputResult.value = value.slice(1);
+        inputResult.value = value.slice(1)
     }
-    return inputResult.value;
+    return inputResult.value
 }
 
 
@@ -71,55 +71,62 @@ function addNegativePositiveValues(value) {
 // this block for working with mathematical operators, resetting and getting the result 
 
 function operationButtonClickListener(e) {
-    theOperation = e.currentTarget.value;
-    inputResult.value = null;
+    theOperation = e.currentTarget.value
+    inputResult.value = null
     if (mathematicalOperation === undefined || theOperation === "C") {
-        resultOperation(theOperation);
+        resultOperation(theOperation)
     } else {
-        finalResultCalculator();
-        // resultOperation(theOperation);
+        finalResultCalculator()
     }
 }
 
 function resultOperation(theOperation) {
-    mathematicalOperation = theOperation;
+    mathematicalOperation = theOperation
     if (theOperation === 'C') {
-        resetValues();
+        resetValues()
     }
 }
 
 function finalResultCalculator() {
-    if (mathematicalOperation == 'X') {
-        finalResult = firstNumber * lastNumber;
-    } else if (mathematicalOperation == '-') {
-        finalResult = firstNumber - lastNumber;
-    } else if (mathematicalOperation == '+') {
-        finalResult = +firstNumber + +lastNumber;
-    } else if (mathematicalOperation == '/') {
-        finalResult = firstNumber / lastNumber;
-    } else if (mathematicalOperation == 'C') {
-        resetValues();
-    } else if (mathematicalOperation == '=') {
-        inputResult.value = finalResult;
-    } else if (mathematicalOperation == '%') {
-        finalResult = (+firstNumber / 100) * +lastNumber;
-    } else {
-        console.log('calculator error');
+    switch (mathematicalOperation) {
+        case ('X'):
+            finalResult = firstNumber * lastNumber
+            break
+        case ('-'):
+            finalResult = firstNumber - lastNumber
+            break
+        case ('+'):
+            finalResult = +firstNumber + +lastNumber
+            break
+        case ('/'):
+            finalResult = firstNumber / lastNumber
+            break
+        case ('C'):
+            resetValues()
+            break
+        case ('='):
+            inputResult.value = finalResult
+            break
+        case ('%'):
+            finalResult = (+firstNumber / 100) * +lastNumber
+            break
+        default:
+            console.log('calculator error')
+            break
     }
-    inputResult.value = finalResult;
-    firstNumber = finalResult;
+    inputResult.value = finalResult
+    firstNumber = finalResult
 }
 
 function resetValues() {
-    inputResult.value = '0';
-    firstNumber = undefined;
-    lastNumber = undefined;
-    mathematicalOperation = undefined;
-    finalResult = '0';
+    inputResult.value = '0'
+    firstNumber = undefined
+    lastNumber = undefined
+    mathematicalOperation = undefined
+    finalResult = '0'
 }
 
 
 
 
 // UI CODE
-// since the code is very simple there is no reason to write UI code in Javascript 
